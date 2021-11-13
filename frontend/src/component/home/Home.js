@@ -1,18 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { CgMouse } from "react-icons/cg";
+import MetaData from "../layout/MetaData";
 import "./Home.css";
 import ProductCard from "./ProductCard";
-
-const product = {
-  name: "Blue Tshirt",
-  images: [{ url: "https://i.ibb.co/DRST11n/1.webp" }],
-  price: "NRP 2500",
-  _id: "123saD12A",
-};
+import { getProduct } from "../../actions/productAction";
+import { useSelector, useDispatch } from "react-redux";
 
 const Home = () => {
+  const dispatch = useDispatch();
+  const { loading, error, products, productCount } = useSelector(
+    (state) => state.products
+  );
+
+  useEffect(() => {
+    dispatch(getProduct());
+  }, [dispatch]);
+
   return (
     <>
+      <MetaData title="Tech-Store" />
       <div className="banner">
         <p>Welcome to Tech-Store</p>
         <h1>FIND AMAZING PRODUCTS BELOW</h1>
@@ -24,14 +30,8 @@ const Home = () => {
       </div>
       <h2 className="homeHeading">Featured Products</h2>
       <div className="container" id="container">
-        <ProductCard product={product} />
-        <ProductCard product={product} />
-        <ProductCard product={product} />
-        <ProductCard product={product} />
-        <ProductCard product={product} />
-        <ProductCard product={product} />
-        <ProductCard product={product} />
-        <ProductCard product={product} />
+        {products &&
+          products.map((product) => <ProductCard product={product} />)}
       </div>
     </>
   );
