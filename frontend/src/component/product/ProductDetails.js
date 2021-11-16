@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Carousel from "react-material-ui-carousel";
 import "./productDetails.css";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getProductDetails } from "../../actions/productAction";
 
 const ProductDetails = ({ match }) => {

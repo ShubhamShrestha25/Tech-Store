@@ -5,7 +5,7 @@ import {
   PRODUCT_DETAILS_REQUEST,
   PRODUCT_DETAILS_SUCCESS,
   PRODUCT_DETAILS_FAIL,
-  CLEAR_ERROS,
+  CLEAR_ERRORS,
 } from "../constants/productConstants";
 
 export const productReducer = (state = { products: [] }, action) => {
@@ -26,7 +26,7 @@ export const productReducer = (state = { products: [] }, action) => {
         loading: false,
         error: action.payload,
       };
-    case CLEAR_ERROS:
+    case CLEAR_ERRORS:
       return {
         ...state,
         error: null,
@@ -53,7 +53,8 @@ export const productDetailsReducer = (state = { product: {} }, action) => {
         loading: false,
         error: action.payload,
       };
-    case CLEAR_ERROS:
+
+    case CLEAR_ERRORS:
       return {
         ...state,
         error: null,
